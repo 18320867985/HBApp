@@ -60,26 +60,38 @@ gulp.task('del', function(cd) {
 
 /******发布文件*******/
 
-gulp.task('release', ['concat']);
+gulp.task('release', ["scss", "js"]);
 
 
-// 发布的合并js和css文件
-gulp.task("concat", ["scss", "build"]);
-
-/*******************开发*************************/
-
-//sass合并css文件
+// sass合并压缩css文件
 gulp.task("scss", function() {
-
-	gulp.src(paths.allscss)
+	
+		gulp.src(paths.allscss)
 		.pipe(sass().on('error', sass.logError)) // sass编译
 		.pipe(postcss([autoprefixer])) // 自动添加css3缀-webkit-  适合用于手机端 
-		.pipe(rename("mobile.css")) // 压缩css文件
-		.pipe(gulp.dest('./app/css'));
-
-	gulp.src(paths.scssPath).pipe(connect.reload());
-
+		.pipe(minCss())                // 压缩css文件
+		.pipe(rename("mobile.css")) 
+		.pipe(gulp.dest('./app/css'));		
+	
 });
+
+gulp.task("unscss", function() {
+	
+		gulp.src(paths.allscss)
+		.pipe(sass().on('error', sass.logError)) // sass编译
+		.pipe(postcss([autoprefixer])) // 自动添加css3缀-webkit-  适合用于手机端 
+		//.pipe(minCss())                // 压缩css文件
+		.pipe(rename("mobile.css")) 
+		.pipe(gulp.dest('./app/css'));
+		
+		gulp.src(paths.scssPath).pipe(connect.reload());
+		
+	
+});
+
+
+
+
 
 //开启http服务器
 gulp.task('connect', function() {
@@ -99,10 +111,10 @@ gulp.task('connect', function() {
 gulp.task("watch", ['connect'], function() {
 
 	//合拼压缩js文件
-	gulp.watch(paths.jsPath, ["build"]);
+	gulp.watch(paths.jsPath, ["js"]);
 
 	//sass合并压缩css文件
-	gulp.watch(paths.scssPath, ['scss']);
+	gulp.watch(paths.scssPath, ['unscss']);
 
 	//监听html
 	gulp.watch(paths.htmlPath, function() {
@@ -118,7 +130,7 @@ gulp.task('t_eslint', function() {
 	//gulp.src(paths.jsBabel).pipe(eslint()).pipe(eslint.format());
 });
 
-gulp.task('build', async function() {
+gulp.task('js', async function() {
 	const bundle = await rollup.rollup({
 		input: './app/unpackage/js-dev/app.js',
 
@@ -138,7 +150,7 @@ gulp.task('build', async function() {
 			}),
 			
 			/* 使用uglify压缩js 不能output 输出 format: 'es' 格式 否会报错*/
-			//uglify(), 
+			uglify(), 
 
 		],
 	});
