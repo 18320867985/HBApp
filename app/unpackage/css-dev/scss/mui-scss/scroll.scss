@@ -1,0 +1,95 @@
+
+.#{$namespace}scroll-wrapper {
+//  -webkit-backface-visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    top: 0rem/$rem;
+    bottom: 0rem/$rem;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.#{$namespace}scroll {
+//  -webkit-backface-visibility: hidden;
+    position: absolute;
+    z-index: z("default");
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.#{$namespace}scrollbar{
+    position: absolute;
+    z-index: z("scroll","scrollbar");
+    overflow: hidden;
+    transform: translateZ(0rem/$rem);
+    transition: 500ms;
+    -webkit-transition: 500ms;
+    opacity: 0;
+    pointer-events: none;
+}
+.#{$namespace}scrollbar-vertical{
+    width: 4rem/$rem;
+    bottom: 2rem/$rem;
+    top: 0;
+    right: 1rem/$rem;
+    .#{$namespace}scrollbar-indicator{
+        width:100%;
+    }
+}
+.#{$namespace}scrollbar-horizontal{
+    height: 4rem/$rem;
+    left: 2rem/$rem;
+    right: 2rem/$rem;
+    bottom: 0rem/$rem;
+    .#{$namespace}scrollbar-indicator{
+        height:100%;
+    }
+}
+
+.#{$namespace}scrollbar-indicator{
+    box-sizing: border-box;
+    position: absolute;
+    border: 1rem/$rem solid rgba(255, 255, 255, 0.801961);
+    border-radius: 2rem/$rem;
+    transition: 0.01s cubic-bezier(0.1, 0.57, 0.1, 1);
+    -webkit-transition: 0.01s cubic-bezier(0.1, 0.57, 0.1, 1);
+    display: block;
+    transform: translate(0rem/$rem, 0rem/$rem) translateZ(0rem/$rem);
+    background: rgba(0, 0, 0, 0.398039);
+}
+
+//android 5+
+.#{$namespace}plus-pullrefresh{
+    .#{$namespace}fullscreen{
+        .#{$namespace}scroll-wrapper,.#{$namespace}slider-group {
+            .#{$namespace}scroll-wrapper {
+                position: absolute;
+                top: 0rem/$rem;
+                bottom: 0rem/$rem;
+                left: 0;
+                width: 100%;
+                overflow: hidden;
+            }
+             .#{$namespace}scroll {
+                position: absolute;
+                width: 100%;
+            }  
+        }
+    }
+    .#{$namespace}scroll-wrapper,.#{$namespace}slider-group {
+        position: static;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        width: auto;
+        overflow: auto;
+    }
+    .#{$namespace}slider-group{
+        overflow: visible;
+    }
+    .#{$namespace}scroll {
+        position: static;
+        width: auto;
+    }   
+}

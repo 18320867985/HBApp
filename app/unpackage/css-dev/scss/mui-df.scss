@@ -9,7 +9,7 @@
 }
 
 body {
-    font-size: 14px;
+    font-size: 14rem/$rem;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     background: $body-bg;
     color:$body-color;
@@ -17,7 +17,7 @@ body {
 
 html,body{
     height: 100%;
-    overflow: hidden;
+
 }
 img {
     display: inline-block;

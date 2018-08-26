@@ -1,0 +1,71 @@
+.#{$namespace}numbox {
+	border: solid 1rem/$rem #bbb;
+	overflow: hidden ;
+	display: inline-block;
+	height: 35rem/$rem;
+	border-radius: 3rem/$rem;
+	background-color: #efeff4;
+	vertical-align: top;
+	position: relative;
+	padding: 0rem/$rem 40rem/$rem 0rem/$rem 40rem/$rem;
+	width: 120rem/$rem;
+	vertical-align: middle;
+
+	//基于.mui-btn扩展，故命名修改为mui-btn-numbox
+	[class*=numbox-btn],[class*=btn-numbox] {
+		width: 40rem/$rem;
+		height: 100%;
+		position: absolute;
+		top: 0rem/$rem;
+		border: none;
+		border-radius: 0rem/$rem;
+		font-size: 18rem/$rem;
+		color: #555;
+		line-height: 100%;
+		font-weight: normal;
+		overflow: hidden;
+		padding: 0rem/$rem;
+		background-color: #f9f9f9;
+
+		&:active{
+			background-color: #ccc;
+		}
+		&[disabled]{
+			color: #c0c0c0;
+		}
+	}
+
+	.#{$namespace}numbox-btn-plus,.#{$namespace}btn-numbox-plus {
+		right: 0rem/$rem;
+		border-top-right-radius:3rem/$rem;
+		border-bottom-right-radius:3rem/$rem;
+	}
+	.#{$namespace}numbox-btn-minus,.#{$namespace}btn-numbox-minus {
+		left: 0rem/$rem;
+		border-top-left-radius:3rem/$rem;
+		border-bottom-left-radius:3rem/$rem;
+	}
+
+	.#{$namespace}numbox-input,.#{$namespace}input-numbox {
+		width: 100% !important;
+		height: 100%;
+		text-align: center;
+		border: none !important;
+		border-left: solid 1rem/$rem #ccc !important;
+		border-right: solid 1rem/$rem #ccc !important;
+		margin: 0rem/$rem;
+		padding: 0rem/$rem 3rem/$rem !important;
+		display: inline-block;
+		border-radius: 0rem/$rem !important;
+		text-overflow: ellipsis;
+		word-break: normal;
+		overflow: hidden;
+	}
+
+}
+
+
+.#{$namespace}input-row .#{$namespace}numbox {
+	margin: 2rem/$rem 8rem/$rem;
+	float: right;
+}
