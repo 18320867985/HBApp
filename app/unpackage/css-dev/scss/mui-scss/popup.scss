@@ -1,0 +1,152 @@
+.#{$namespace}popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: z("backdrop");
+    background: rgba(0,0,0,.4);
+    opacity: 0;
+    @include transition-duration(400ms);
+    &.#{$namespace}active {
+        opacity: 1;
+    }
+}
+.#{$namespace}popup {
+    width: 270rem/$rem;
+    position: fixed;
+    z-index: z("max");
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    border-radius: 13rem/$rem;
+    overflow: hidden;
+    opacity: 0;
+    @include transform(translate3d(-50%,-50%,0) scale(1.185));
+    -webkit-transition-property: -webkit-transform,opacity;
+    transition-property: transform,opacity;
+    color: #000;
+    display: none;
+    &.#{$namespace}popup-in {
+        opacity: 1;
+        @include transition-duration(400ms);
+        @include transform(translate3d(-50%,-50%,0) scale(1));
+        display: block;
+    }
+    &.#{$namespace}popup-out {
+        opacity: 0;
+        //z-index:max-1
+        @include transition-duration(400ms);
+        @include transform(translate3d(-50%,-50%,0) scale(1));
+    }
+}
+.#{$namespace}popup-inner {
+    padding: 15rem/$rem;
+    border-radius: 13rem/$rem 13rem/$rem 0 0;
+    position: relative;
+    background: rgba(255,255,255,.95);
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: auto;
+        top: auto;
+        height: 1rem/$rem;
+        width: 100%;
+        background-color: rgba(0,0,0,.2);
+        display: block;
+        z-index: 15;
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+        -webkit-transform: scaleY(.5);
+        transform: scaleY(.5);
+    }
+}
+.#{$namespace}popup-title {
+    font-weight: 500;
+    font-size: 18rem/$rem;
+    text-align: center;
+}
+.#{$namespace}popup-title+.#{$namespace}popup-text {
+    margin: 5rem/$rem 0 0;
+    font-family: inherit;
+    font-size: 14rem/$rem;
+}
+.#{$namespace}popup-buttons {
+    height: 44rem/$rem;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.#{$namespace}popup-button {
+    width: 100%;
+    padding: 0 5rem/$rem;
+    height: 44rem/$rem;
+    font-size: 17rem/$rem;
+    line-height: 44rem/$rem;
+    text-align: center;
+    color: #007aff;
+    display: block;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    background: rgba(255,255,255,.95);
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        left: auto;
+        bottom: auto;
+        width: 1rem/$rem;
+        height: 100%;
+        background-color: rgba(0,0,0,.2);
+        display: block;
+        z-index: 15;
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+        -webkit-transform: scaleX(.5);
+        transform: scaleX(.5);
+    }
+    &:first-child {
+        border-radius: 0 0 0 13rem/$rem;
+        &:last-child {
+            border-radius: 0 0 13rem/$rem 13rem/$rem;
+        }
+    }
+    &:last-child {
+        border-radius: 0 0 13rem/$rem 0;
+        &:after {
+            display: none;
+        }
+    }
+    &.#{$namespace}popup-button-bold {
+        font-weight: 600;
+    }
+}
+.#{$namespace}popup-input input {
+    height: 26rem/$rem;
+    background: #fff;
+    margin: 15rem/$rem 0 0;
+    padding: 0 5rem/$rem;
+    border: 1rem/$rem solid rgba(0,0,0,.3);
+    border-radius: 0;
+    width: 100%;
+    font-size: 14rem/$rem;
+}
+.#{$namespace}plus.#{$namespace}android .#{$namespace}popup-backdrop {
+    @include transition-duration(1ms);
+}
+.#{$namespace}plus.#{$namespace}android .#{$namespace}popup {
+    @include transition-duration(1ms);
+    @include transform(translate3d(-50%,-50%,0) scale(1));
+}

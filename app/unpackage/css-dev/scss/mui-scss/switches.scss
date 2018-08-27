@@ -1,0 +1,115 @@
+//
+// switch styles (to be used with switchs.js)
+// --------------------------------------------------
+
+.#{$namespace}switch {
+    position: relative;
+    display: block;
+    width: 74rem/$rem;
+    height: 30rem/$rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 2rem/$rem solid #ddd;
+    border-radius: 20rem/$rem;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: background-color, border;
+    transition-property: background-color, border;
+    &.#{$namespace}disabled {
+        opacity: .3;
+    }
+    // Sliding handle
+    .#{$namespace}switch-handle {
+        position: absolute;
+        top: -1rem/$rem;
+        left: -1rem/$rem;
+        z-index: z("default");
+        width: 28rem/$rem;
+        height: 28rem/$rem;
+        background-color: #fff;
+        background-clip: padding-box;
+//      border: 1rem/$rem solid #ddd;
+        -webkit-box-shadow: 0 2rem/$rem 5rem/$rem rgba(0,0,0,.4);
+        box-shadow: 0 2rem/$rem 5rem/$rem rgba(0,0,0,.4);
+        border-radius: 16rem/$rem;
+        -webkit-transition-property: -webkit-transform, width,left;
+        transition-property: transform, width,left;
+        -webkit-transition: 0.2s ease-in-out;
+        transition: 0.2s ease-in-out;
+    }
+    &:before {
+        position: absolute;
+        top: 3rem/$rem;
+        right: 11rem/$rem;
+        font-size: 13rem/$rem;
+        color: #999;
+        text-transform: uppercase;
+        content: "Off";
+    }
+    &.#{$namespace}dragging {
+        background-color: $chrome-color;
+        border-color: $chrome-color;
+        .#{$namespace}switch-handle {
+           width: 38rem/$rem;
+        }
+        &.#{$namespace}active{
+            .#{$namespace}switch-handle {
+               width: 38rem/$rem;
+               left:-11rem/$rem;
+            }    
+        }
+    }
+    // Active state for switchborder: 2rem/$rem solid $positive-color;
+    &.#{$namespace}active {
+        background-color: $positive-color;
+        border-color: $positive-color;
+//        @include box-shadow(inset 0 0 0 13rem/$rem $positive-color);
+        .#{$namespace}switch-handle {
+//          border-color: $positive-color;
+            @include transform(translate(43rem/$rem,0));
+        }
+        &:before {
+            right: auto;
+            left: 15rem/$rem;
+            color: #fff;
+            content: "On";
+        }
+    }
+    // Hide the checkbox
+    input[type="checkbox"] {
+        display: none;
+    }
+}
+
+.#{$namespace}switch-mini{
+    width: 47rem/$rem;
+    &:before {
+        display: none;
+    }
+    // Active state for switch
+    &.#{$namespace}active {
+        .#{$namespace}switch-handle {
+            @include transform(translate(16rem/$rem,0));
+        }
+    }
+}
+
+//增加蓝色开关
+.#{$namespace}switch-blue {
+    // Sliding handle
+    .#{$namespace}switch-handle {
+//      border: 1rem/$rem solid rgba(0, 0, 0, .2);
+//      @include box-shadow(0 3rem/$rem 3rem/$rem rgba(0,0,0,.08));
+    }
+    // Active state for switch
+    &.#{$namespace}active {
+        background-color: $primary-color;
+        border: 2rem/$rem solid $primary-color;
+//        @include box-shadow(inset 0 0 0 13rem/$rem $primary-color);
+//      .#{$namespace}switch-handle {
+//          border-color: $primary-color;
+//      }
+    }
+}

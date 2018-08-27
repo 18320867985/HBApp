@@ -1,0 +1,25 @@
+//
+// Typography
+// --------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 5rem/$rem;
+  margin-bottom: 5rem/$rem;
+  line-height: 1;
+}
+h1, .#{$namespace}h1 { font-size: 36rem/$rem; }
+h2, .#{$namespace}h2 { font-size: 30rem/$rem; }
+h3, .#{$namespace}h3 { font-size: 24rem/$rem; }
+h4, .#{$namespace}h4 { font-size: 18rem/$rem; }
+h5, .#{$namespace}h5 { font-size: 14rem/$rem; color: #8f8f94;font-weight: normal; }
+h6, .#{$namespace}h6 { font-size: 12rem/$rem; color: #8f8f94;font-weight: normal; }
+
+// Paragraphs
+p {
+  margin-top: 0;
+  margin-bottom: 10rem/$rem;
+  font-size: 14rem/$rem;
+  color: #8f8f94;
+}
+
+
